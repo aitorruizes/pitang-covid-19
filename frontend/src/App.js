@@ -1,10 +1,10 @@
+import Routes from "./routes";
 import "./App.css";
-import SchedulingForm from "./components/SchedulingForm";
 
 function App() {
    return (
       <div className="App">
-         <SchedulingForm/>
+         <Routes/>
       </div>
    );
 }
