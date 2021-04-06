@@ -1,10 +1,10 @@
 import "./App.css";
-import Scheduling from "./components/Scheduling";
+import SchedulingForm from "./components/SchedulingForm";
 
 function App() {
    return (
       <div className="App">
-         <Scheduling/>
+         <SchedulingForm/>
       </div>
    );
 }
