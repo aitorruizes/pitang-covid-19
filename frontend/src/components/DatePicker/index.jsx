@@ -23,6 +23,7 @@ const DatePicker = ({ name }) => {
                );
             }}
          </Field>
+         <br/>
          <ErrorMessage name={name}/>
       </div>
    );

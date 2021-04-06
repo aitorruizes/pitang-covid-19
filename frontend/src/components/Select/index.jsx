@@ -4,7 +4,7 @@ import { Field, ErrorMessage } from "formik";
 const Select = ({ name, options }) => {
    return (
       <div>
-         <Field as="select" name={name}>
+         <Field as="select" name={name} className="form-input-select">
             {options.map((option) => {
                return (
                   <option key={option.value} value={option.value}>
@@ -13,6 +13,7 @@ const Select = ({ name, options }) => {
                );
             })}
          </Field>
+         <br/>
          <ErrorMessage name="schedulingHour" />
       </div>
    );

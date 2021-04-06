@@ -17,13 +17,13 @@ const options = [
    { key: "12:00", value: "12:00" },
    { key: "12:30", value: "12:30" },
    { key: "13:00", value: "13:00" },
-   { key: "13:00", value: "13:30" },
+   { key: "13:30", value: "13:30" },
    { key: "14:00", value: "14:00" },
    { key: "14:30", value: "14:30" },
    { key: "15:00", value: "15:00" },
    { key: "15:30", value: "15:30" },
    { key: "16:00", value: "16:00" },
-   { key: "16:00", value: "16:30" },
+   { key: "16:30", value: "16:30" },
    { key: "17:00", value: "17:00" },
    { key: "17:30", value: "17:30" }
 ];
@@ -53,11 +53,12 @@ const SchedulingForm = () => {
          validationSchema={validationSchema}
          onSubmit={onSubmit}
       >
-         <Form>
+         <Form className="form-container">
             <div className="form-input">
                <label>Nome:</label>
                <br />
                <Field type="text" name="name" placeholder="Nome..." />
+               <br/>
                <ErrorMessage name="name" />
             </div>
             <br />
@@ -69,6 +70,7 @@ const SchedulingForm = () => {
                   name="birthdate"
                   placeholder="Data de nascimento..."
                />
+               <br/>
                <ErrorMessage name="birthdate" />
             </div>
             <br />
@@ -78,7 +80,7 @@ const SchedulingForm = () => {
                <DatePicker name="schedulingDate"/>
             </div>
             <br />
-            <div className="form-input">
+            <div className="form-input-select">
                <label>Horário:</label>
                <br />
                <Select name="schedulingHour" options={options}/>
