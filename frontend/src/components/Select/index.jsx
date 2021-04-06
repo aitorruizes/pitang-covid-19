@@ -1,10 +1,10 @@
 import React from "react";
-import { Field } from "formik";
+import { Field, ErrorMessage } from "formik";
 
-const Select = ({ options }) => {
+const Select = ({ name, options }) => {
    return (
       <div>
-         <Field as="select">
+         <Field as="select" name={name}>
             {options.map((option) => {
                return (
                   <option key={option.value} value={option.value}>
@@ -13,6 +13,7 @@ const Select = ({ options }) => {
                );
             })}
          </Field>
+         <ErrorMessage name="schedulingHour" />
       </div>
    );
 };

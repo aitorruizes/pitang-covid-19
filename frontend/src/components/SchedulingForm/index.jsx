@@ -1,9 +1,8 @@
 import React from "react";
-import DatePicker from "react-datepicker";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import DatePicker from "../DatePicker";
 import Select from "../Select";
-import "react-datepicker/dist/react-datepicker.css";
 
 const options = [
    { key: "Selecione um horário", value: ""},
@@ -32,7 +31,7 @@ const options = [
 const initialValues = {
    name: "",
    birthdate: "",
-   schedulingDate: new Date(),
+   schedulingDate: null,
    schedulingHour: "",
 };
 
@@ -76,20 +75,13 @@ const SchedulingForm = () => {
             <div className="form-input">
                <label>Agendar vacina para:</label>
                <br />
-               <DatePicker
-                  name="schedulingDate"
-                  dateFormat="dd/MM/yyyy"
-                  minDate={new Date("01-04-2021")}
-                  maxDate={new Date("21-04-2021")}
-               />
-               <ErrorMessage name="schedulingDate" />
+               <DatePicker name="schedulingDate"/>
             </div>
             <br />
             <div className="form-input">
                <label>Horário:</label>
                <br />
-               <Select options={options}/>
-               <ErrorMessage name="schedulingHour" />
+               <Select name="schedulingHour" options={options}/>
             </div>
             <br />
             <div className="form-input">
