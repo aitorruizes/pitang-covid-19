@@ -1,9 +1,10 @@
 import "./App.css";
+import Scheduling from "./components/Scheduling";
 
 function App() {
    return (
       <div className="App">
-         Hello World
+         <Scheduling/>
       </div>
    );
 }
