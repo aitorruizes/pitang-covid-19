@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavegationBar from "./components/NavegationBar";
+import Footer from "./components/Footer";
 import SchedulingForm from "./pages/Scheduling/SchedulingForm";
 import SchedulingList from "./pages/Scheduling/SchedulingList";
 
@@ -33,6 +34,7 @@ const Routes = () => {
                ></Route>
             ))}
          </Switch>
+         <Footer title="Aitor Ruiz"/>
       </Router>
    );
 };
