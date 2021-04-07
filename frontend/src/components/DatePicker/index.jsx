@@ -19,6 +19,7 @@ const DatePicker = ({ name }) => {
                      dateFormat={"dd/MM/yyyy"}
                      minDate={new Date("01/04/2021")}
                      maxDate={new Date("21/04/2021")}
+                     placeholderText="Informe data da vacina"
                   />
                );
             }}

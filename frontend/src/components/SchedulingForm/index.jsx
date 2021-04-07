@@ -5,7 +5,7 @@ import DatePicker from "../DatePicker";
 import Select from "../Select";
 
 const options = [
-   { key: "Selecione um horário", value: ""},
+   { key: "Selecione um horário", value: "" },
    { key: "8:00", value: "8:00" },
    { key: "8:30", value: "8:30" },
    { key: "9:00", value: "9:00" },
@@ -25,7 +25,7 @@ const options = [
    { key: "16:00", value: "16:00" },
    { key: "16:30", value: "16:30" },
    { key: "17:00", value: "17:00" },
-   { key: "17:30", value: "17:30" }
+   { key: "17:30", value: "17:30" },
 ];
 
 const initialValues = {
@@ -36,14 +36,14 @@ const initialValues = {
 };
 
 const onSubmit = (values) => {
-   console.log("Form data:", values);
+   console.log("Scheduling form data: ", values);
 };
 
 const validationSchema = Yup.object({
    name: Yup.string().required("This field is required."),
    birthdate: Yup.string().required("This field is required."),
    schedulingDate: Yup.date().required("This field is required.").nullable(),
-   schedulingHour: Yup.string().required("This field is required.")
+   schedulingHour: Yup.string().required("This field is required."),
 });
 
 const SchedulingForm = () => {
@@ -57,9 +57,13 @@ const SchedulingForm = () => {
             <div className="form-input">
                <label>Nome:</label>
                <br />
-               <Field type="text" name="name" placeholder="Nome..." />
-               <br/>
-               <ErrorMessage className="form-input-error" component="span" name="name" />
+               <Field type="text" name="name" placeholder="Informe seu nome" />
+               <br />
+               <ErrorMessage
+                  className="form-input-error"
+                  component="span"
+                  name="name"
+               />
             </div>
             <br />
             <div className="form-input">
@@ -68,22 +72,26 @@ const SchedulingForm = () => {
                <Field
                   type="text"
                   name="birthdate"
-                  placeholder="Data de nascimento..."
+                  placeholder="Informe data de nascimento"
                />
-               <br/>
-               <ErrorMessage className="form-input-error" component="span" name="birthdate" />
+               <br />
+               <ErrorMessage
+                  className="form-input-error"
+                  component="span"
+                  name="birthdate"
+               />
             </div>
             <br />
             <div className="form-input">
                <label>Agendar vacina para:</label>
                <br />
-               <DatePicker name="schedulingDate"/>
+               <DatePicker name="schedulingDate" />
             </div>
             <br />
             <div className="form-input-select">
                <label>Horário:</label>
                <br />
-               <Select name="schedulingHour" options={options}/>
+               <Select name="schedulingHour" options={options} />
             </div>
             <br />
             <div className="form-input">
