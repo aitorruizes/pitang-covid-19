@@ -4,10 +4,6 @@ import ListView from "../ListView";
 const SchedulingList = () => {
    const columns = [
       {
-         id: "_id",
-         value: "ID",
-      },
-      {
          id: "name",
          value: "Name",
       },
