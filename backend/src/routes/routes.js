@@ -1,4 +1,4 @@
-const express = requir("express");
+const express = require("express");
 const schedulingRouter = require("./scheduling.routes");
 
 const router = express.Router();
