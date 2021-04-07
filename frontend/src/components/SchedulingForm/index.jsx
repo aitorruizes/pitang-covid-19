@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import DatePicker from "../DatePicker";
 import Select from "../Select";
+import "../../styles/scheduling-form.css";
 
 const options = [
    { key: "Selecione um horário", value: "" },

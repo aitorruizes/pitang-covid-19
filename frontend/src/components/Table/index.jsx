@@ -1,8 +1,9 @@
 import React from "react";
+import { Table } from "react-bootstrap";
 
 const Table = ({ columns = [], rows }) => {
    return (
-      <table>
+      <Table>
          <thead>
             <tr>
                {columns.map((column) => (
@@ -19,7 +20,7 @@ const Table = ({ columns = [], rows }) => {
                </tr>
             ))}
          </tbody>
-      </table>
+      </Table>
    );
 };
 

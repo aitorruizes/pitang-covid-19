@@ -1,0 +1,27 @@
+
+.form-container {
+    margin-top: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-input input {
+    width: 250px;
+    padding: 5px 20px;
+}
+
+.form-input-select {
+    width: 250px;
+    padding: 5px 20px;
+}
+
+.form-input input[type="submit"] {
+    width: 250px;
+    padding: 5px 20px;
+}
+
+.form-input-error {
+    color: red;
+}
