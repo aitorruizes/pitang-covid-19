@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const routes = require("./routes/routes");
 
 require("dotenv").config();
 
@@ -21,6 +22,8 @@ app.use(morgan("dev"));
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
+
+app.use("/api", routes);
 
 app.listen(HTTP_PORT, () => {
     console.log(`Server running on port ${HTTP_PORT}.`);
