@@ -18,7 +18,7 @@ const options = [
    { key: "11:00", value: "11:00" },
    { key: "11:30", value: "11:30" },
    { key: "12:00", value: "12:00" },
-   { key: "12:30", value: "12:30" }
+   { key: "12:30", value: "12:30" },
 ];
 
 const initialValues = {
@@ -29,14 +29,13 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object({
-   name: Yup.string().required("This field is required."),
-   birthdate: Yup.string().required("This field is required."),
-   schedulingDate: Yup.date().required("This field is required.").nullable(),
-   schedulingHour: Yup.string().required("This field is required."),
+   name: Yup.string().required("Este campo é obrigatório"),
+   birthdate: Yup.string().required("Este campo é obrigatório"),
+   schedulingDate: Yup.date().required("Este campo é obrigatório").nullable(),
+   schedulingHour: Yup.string().required("Este campo é obrigatório"),
 });
 
 const SchedulingForm = () => {
-
    let history = useHistory();
 
    const onSubmit = async (values) => {

@@ -7,7 +7,7 @@ const Home = ({ cardTitle, footerTitle }) => {
       <Container className="mt-5">
          <Card title={cardTitle}>
             <blockquote className="blockquote mb-0">
-               <p className="text-align:center">
+               <p>
                   Projeto desenvolvido por mim para o desafio final do processo seletivo da Pitang.
                </p>
             </blockquote>

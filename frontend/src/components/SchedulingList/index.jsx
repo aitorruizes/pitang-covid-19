@@ -5,24 +5,24 @@ const SchedulingList = () => {
    const columns = [
       {
          id: "name",
-         value: "Name",
+         value: "Nome",
       },
       {
          id: "birthdate",
-         value: "Birthdate",
+         value: "Data de Nascimento",
       },
       {
          id: "schedulingDate",
-         value: "Scheduling Date",
+         value: "Data de Agendamento",
       },
       {
          id: "schedulingHour",
-         value: "Scheduling Hour",
+         value: "Horário",
       }
    ];
 
    return (
-      <ListView title="Registered schedulings in the database" columns={columns} />
+      <ListView title="Lista de agendamentos efetivados" columns={columns} />
    );
 };
 
