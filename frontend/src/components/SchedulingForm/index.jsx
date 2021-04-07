@@ -59,7 +59,7 @@ const SchedulingForm = () => {
                <br />
                <Field type="text" name="name" placeholder="Nome..." />
                <br/>
-               <ErrorMessage name="name" />
+               <ErrorMessage className="form-input-error" component="span" name="name" />
             </div>
             <br />
             <div className="form-input">
@@ -71,7 +71,7 @@ const SchedulingForm = () => {
                   placeholder="Data de nascimento..."
                />
                <br/>
-               <ErrorMessage name="birthdate" />
+               <ErrorMessage className="form-input-error" component="span" name="birthdate" />
             </div>
             <br />
             <div className="form-input">

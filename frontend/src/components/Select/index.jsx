@@ -14,7 +14,7 @@ const Select = ({ name, options }) => {
             })}
          </Field>
          <br/>
-         <ErrorMessage name="schedulingHour" />
+         <ErrorMessage className="form-input-error" component="span" name="schedulingHour" />
       </div>
    );
 };

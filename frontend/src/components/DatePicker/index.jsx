@@ -24,7 +24,7 @@ const DatePicker = ({ name }) => {
             }}
          </Field>
          <br/>
-         <ErrorMessage name={name}/>
+         <ErrorMessage className="form-input-error" component="span" name={name}/>
       </div>
    );
 };
