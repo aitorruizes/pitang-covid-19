@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import DatePicker from "../DatePicker";
 import Select from "../Select";
+import axios from "../../utils/api";
 import "../../styles/scheduling-form.css";
 
 const options = [
@@ -36,10 +37,6 @@ const initialValues = {
    schedulingHour: "",
 };
 
-const onSubmit = (values) => {
-   console.log("Scheduling form data: ", values);
-};
-
 const validationSchema = Yup.object({
    name: Yup.string().required("This field is required."),
    birthdate: Yup.string().required("This field is required."),
@@ -47,7 +44,13 @@ const validationSchema = Yup.object({
    schedulingHour: Yup.string().required("This field is required."),
 });
 
-const SchedulingForm = () => {
+const SchedulingForm = ({ history }) => {
+
+   const onSubmit = async (values) => {
+      await axios.post("/patient/scheduling/create", values);
+      history.push("/patient/schedulings");
+   };
+
    return (
       <Formik
          initialValues={initialValues}

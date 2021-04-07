@@ -1,5 +1,5 @@
 import React from "react";
-import ListView from "../../ListView";
+import ListView from "../ListView";
 
 const SchedulingList = () => {
    const columns = [

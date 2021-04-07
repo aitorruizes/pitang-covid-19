@@ -9,7 +9,7 @@ const ListView = ({ title, columns }) => {
     const [rows, setRows] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const fetchData = () => {
+    const fetchData =  async () => {
         setLoading(true);
 
         try {

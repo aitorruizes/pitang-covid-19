@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const Table = ({ columns = [], rows }) => {
+const TableComponent = ({ columns = [], rows }) => {
    return (
       <Table>
          <thead>
@@ -24,4 +24,4 @@ const Table = ({ columns = [], rows }) => {
    );
 };
 
-export default Table;
+export default TableComponent;

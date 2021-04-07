@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import SchedulingForm from "./components/SchedulingForm";
+import SchedulingForm from "./pages/Scheduling/SchedulingForm";
+import SchedulingList from "./pages/Scheduling/SchedulingList";
 
 const routes = [
    {
@@ -9,6 +10,12 @@ const routes = [
       name: SchedulingForm,
       exact: true,
    },
+   {
+      path: "/patient/schedulings",
+      component: SchedulingList,
+      name: SchedulingList,
+      exact: true,
+   }
 ];
 
 const Routes = () => {
