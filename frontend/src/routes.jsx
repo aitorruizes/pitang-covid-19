@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NavegationBar from "./components/NavegationBar";
 import SchedulingForm from "./pages/Scheduling/SchedulingForm";
 import SchedulingList from "./pages/Scheduling/SchedulingList";
 
@@ -21,6 +22,7 @@ const routes = [
 const Routes = () => {
    return (
       <Router>
+         <NavegationBar/>
          <Switch>
             {routes.map((route, index) => (
                <Route

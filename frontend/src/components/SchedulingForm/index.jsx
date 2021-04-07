@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 import DatePicker from "../DatePicker";
 import Select from "../Select";
 import axios from "../../utils/api";
@@ -17,17 +18,7 @@ const options = [
    { key: "11:00", value: "11:00" },
    { key: "11:30", value: "11:30" },
    { key: "12:00", value: "12:00" },
-   { key: "12:30", value: "12:30" },
-   { key: "13:00", value: "13:00" },
-   { key: "13:30", value: "13:30" },
-   { key: "14:00", value: "14:00" },
-   { key: "14:30", value: "14:30" },
-   { key: "15:00", value: "15:00" },
-   { key: "15:30", value: "15:30" },
-   { key: "16:00", value: "16:00" },
-   { key: "16:30", value: "16:30" },
-   { key: "17:00", value: "17:00" },
-   { key: "17:30", value: "17:30" },
+   { key: "12:30", value: "12:30" }
 ];
 
 const initialValues = {
@@ -44,7 +35,9 @@ const validationSchema = Yup.object({
    schedulingHour: Yup.string().required("This field is required."),
 });
 
-const SchedulingForm = ({ history }) => {
+const SchedulingForm = () => {
+
+   let history = useHistory();
 
    const onSubmit = async (values) => {
       await axios.post("/patient/scheduling/create", values);
