@@ -2,10 +2,17 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavegationBar from "./components/NavegationBar";
 import Footer from "./components/Footer";
+import Home from "./pages/Home";
 import SchedulingForm from "./pages/Scheduling/SchedulingForm";
 import SchedulingList from "./pages/Scheduling/SchedulingList";
 
 const routes = [
+   {
+      path: "/home",
+      component: Home,
+      name: Home,
+      exact: true
+   },
    {
       path: "/patient/scheduling",
       component: SchedulingForm,

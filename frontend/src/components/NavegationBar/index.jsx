@@ -13,7 +13,7 @@ const NavegationBar = () => {
                </Link>
             </li>
             <li className="nav-item">
-               <Link className="nav-link">Inicio</Link>
+               <Link className="nav-link" href="home" to="/home">Inicio</Link>
             </li>
             <li className="nav-item">
                <Link
