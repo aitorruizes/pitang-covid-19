@@ -35,11 +35,7 @@ class SchedulingController {
          .sort({ schedulingDate: "asc", schedulingHour: "asc" })
          .exec();
 
-      if (schedulings.length == 0) {
-         res.send({ message: "There is no schedulings registered." });
-      }
-
-      res.send({ schedulings });
+         res.send({ schedulings });
    }
 }
 

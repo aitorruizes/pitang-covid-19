@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import DatePicker from "../DatePicker";
@@ -49,8 +49,6 @@ const SchedulingForm = () => {
             option.numberOfSchedulings += 1;
          }
       });
-
-      console.log(options);
    };
 
    return (

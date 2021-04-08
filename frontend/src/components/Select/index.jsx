@@ -5,16 +5,24 @@ const Select = ({ name, options }) => {
    return (
       <div>
          <Field as="select" name={name} className="form-input-select">
-            {options.map((option) => {
-               return (
+            {options.map((option) =>
+               option.numberOfSchedulings === 2 ? (
+                  <option disabled key={option.value} value={option.value}>
+                     {option.key}
+                  </option>
+               ) : (
                   <option key={option.value} value={option.value}>
                      {option.key}
                   </option>
-               );
-            })}
+               )
+            )}
          </Field>
-         <br/>
-         <ErrorMessage className="form-input-error" component="span" name="schedulingHour" />
+         <br />
+         <ErrorMessage
+            className="form-input-error"
+            component="span"
+            name="schedulingHour"
+         />
       </div>
    );
 };

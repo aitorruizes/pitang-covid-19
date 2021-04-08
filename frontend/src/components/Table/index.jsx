@@ -12,13 +12,13 @@ const TableComponent = ({ columns = [], rows = [] }) => {
             </tr>
          </thead>
          <tbody>
-            {rows.map((row) => (
+            {rows.length ? rows.map((row) => (
                <tr key={row.id}>
                   {columns.map((column) => (
                      <td key={column.id}>{row[column.id]}</td>
                   ))}
                </tr>
-            ))}
+            )) : <span className="center">Não há agendamentos registrados na base de dados.</span>}
          </tbody>
       </Table>
    );
