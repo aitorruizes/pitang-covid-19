@@ -35,18 +35,6 @@ const validationSchema = Yup.object({
    schedulingHour: Yup.string().required("Este campo é obrigatório"),
 });
 
-const SaveFormData = () => {
-   const { values } = useFormikContext();
-
-   window.localStorage.setItem("scheduling", JSON.stringify(values));
-   
-   useEffect(() => {
-      JSON.parse(window.localStorage.getItem("scheduling"))
-   }, []);
-
-   return null;
-};
-
 const SchedulingForm = () => {
    let history = useHistory();
 
@@ -105,7 +93,6 @@ const SchedulingForm = () => {
             <div className="form-input">
                <input type="submit" value="Agendar" />
             </div>
-            <SaveFormData/>
          </Form>
       </Formik>
    );

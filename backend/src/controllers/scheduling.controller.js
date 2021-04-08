@@ -1,25 +1,46 @@
 const SchedulingModel = require("../models/scheduling.model");
 
 class SchedulingController {
+   async create(req, res) {
+      const data = req.body;
 
-    async create(req, res) {
-        const data = req.body;
+      const receivedBirthdate = data.birthdate.split("/");
+      const receivedYear = receivedBirthdate[2];
 
-        const newScheduling = await SchedulingModel.create(data);
+      const findPatient = await SchedulingModel.find();
 
-        res.send({ scheduling: newScheduling });
-    }
+      findPatient.forEach(async (patient) => {
+         console.log(patient);
+         let searchedBirthdate = patient.birthdate.split("/");
+         let searchedYear = searchedBirthdate[2];
 
-    async getAll(req, res) {
-        const schedulings = await SchedulingModel.find().sort({ schedulingDate: "asc", schedulingHour: "asc"}).exec();
+         const actualYear = 2021;
 
-        if(schedulings.length == 0) {
-            res.send({ message: "There is no schedulings registered." });
-        }
+         if (
+            actualYear - receivedYear >= 60 &&
+            actualYear - receivedYear > actualYear - searchedYear &&
+            data.schedulingHour === patient.schedulingHour
+         ) {
+            await SchedulingModel.findByIdAndDelete(patient._id);
+         }
+      });
 
-        res.send({ schedulings });
-    }
+      const newScheduling = await SchedulingModel.create(data);
 
+      res.send({ scheduling: newScheduling });
+   }
+
+   async getAll(req, res) {
+      const schedulings = await SchedulingModel.find()
+         .sort({ schedulingDate: "asc", schedulingHour: "asc" })
+         .exec();
+
+      if (schedulings.length == 0) {
+         res.send({ message: "There is no schedulings registered." });
+      }
+
+      res.send({ schedulings });
+   }
 }
 
 module.exports = new SchedulingController();

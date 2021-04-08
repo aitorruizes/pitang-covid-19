@@ -37,7 +37,7 @@ const ListView = ({ title, columns }) => {
 
    useEffect(() => {
       fetchData();
-   });
+   }, []);
 
    return (
       <Container className="mt-5">
