@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const TableComponent = ({ columns = [], rows }) => {
+const TableComponent = ({ columns = [], rows = [] }) => {
    return (
       <Table>
          <thead>

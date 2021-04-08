@@ -4,7 +4,8 @@
   "description": "Pitang's selection process project.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,9 +26,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
-  },
-  "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
   }
 }

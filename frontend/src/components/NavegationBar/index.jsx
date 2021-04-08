@@ -8,7 +8,7 @@ const NavegationBar = () => {
       <nav className="navbar">
          <ul className="nav-links">
             <li className="nav-item">
-               <Link className="nav-link">
+               <Link className="nav-link" href="home" to="/home">
                   <img className="navbar-logo" src={Logo} alt="navbar-logo" />
                </Link>
             </li>
