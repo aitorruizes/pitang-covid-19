@@ -9,7 +9,7 @@ const ListView = ({ title, columns }) => {
    const [loading, setLoading] = useState(false);
 
    const formattedDate = (response) => {
-      response.data.schedulings.map((scheduling) => {
+      response.data.schedulings.forEach((scheduling) => {
          let date = new Date(scheduling.schedulingDate);
 
          const day = date.getDate();
@@ -37,7 +37,7 @@ const ListView = ({ title, columns }) => {
 
    useEffect(() => {
       fetchData();
-   }, []);
+   });
 
    return (
       <Container className="mt-5">
