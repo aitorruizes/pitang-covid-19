@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
@@ -9,16 +9,16 @@ import "../../styles/scheduling-form.css";
 
 const options = [
    { key: "Selecione um horário", value: "" },
-   { key: "8:00", value: "8:00" },
-   { key: "8:30", value: "8:30" },
-   { key: "9:00", value: "9:00" },
-   { key: "9:30", value: "9:30" },
-   { key: "10:00", value: "10:00" },
-   { key: "10:30", value: "10:30" },
-   { key: "11:00", value: "11:00" },
-   { key: "11:30", value: "11:30" },
-   { key: "12:00", value: "12:00" },
-   { key: "12:30", value: "12:30" },
+   { key: "8:00", value: "8:00", numberOfSchedulings: 0 },
+   { key: "8:30", value: "8:30", numberOfSchedulings: 0  },
+   { key: "9:00", value: "9:00", numberOfSchedulings: 0  },
+   { key: "9:30", value: "9:30", numberOfSchedulings: 0  },
+   { key: "10:00", value: "10:00", numberOfSchedulings: 0  },
+   { key: "10:30", value: "10:30", numberOfSchedulings: 0  },
+   { key: "11:00", value: "11:00", numberOfSchedulings: 0  },
+   { key: "11:30", value: "11:30", numberOfSchedulings: 0  },
+   { key: "12:00", value: "12:00", numberOfSchedulings: 0  },
+   { key: "12:30", value: "12:30", numberOfSchedulings: 0  },
 ];
 
 const initialValues = {
@@ -41,6 +41,16 @@ const SchedulingForm = () => {
    const onSubmit = async (values) => {
       await axios.post("/patient/scheduling/create", values);
       history.push("/patient/schedulings");
+      
+      const selectedHour = values.schedulingHour;
+
+      options.forEach((option) => {
+         if(option.value === selectedHour) {
+            option.numberOfSchedulings += 1;
+         }
+      });
+
+      console.log(options);
    };
 
    return (

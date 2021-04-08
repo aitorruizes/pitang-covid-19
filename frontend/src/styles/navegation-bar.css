@@ -3,8 +3,8 @@
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    box-shadow: 0 2px 15px -10px black;
-    height: 70px;
+    box-shadow: 0 15px 15px -20px black;
+    height: 80px;
 }
 
 .navbar-logo {
