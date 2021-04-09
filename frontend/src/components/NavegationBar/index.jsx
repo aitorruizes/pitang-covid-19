@@ -8,18 +8,18 @@ const NavegationBar = () => {
       <nav className="navbar">
          <ul className="nav-links">
             <li className="nav-item">
-               <Link className="nav-link" href="home" to="/home">
+               <Link className="nav-link" href="home" to="/inicio">
                   <img className="navbar-logo" src={Logo} alt="navbar-logo" />
                </Link>
             </li>
             <li className="nav-item">
-               <Link className="nav-link" href="home" to="/home">Inicio</Link>
+               <Link className="nav-link" href="home" to="/inicio">Inicio</Link>
             </li>
             <li className="nav-item">
                <Link
                   className="nav-link"
                   href="scheduling"
-                  to="/patient/scheduling"
+                  to="/paciente/agendamento"
                >
                   Novo agendamento
                </Link>
@@ -28,7 +28,7 @@ const NavegationBar = () => {
                <Link
                   className="nav-link"
                   href="schedulings"
-                  to="/patient/schedulings"
+                  to="/paciente/agendamentos"
                >
                   Consultar agendamentos
                </Link>

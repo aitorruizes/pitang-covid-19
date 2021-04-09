@@ -14,13 +14,13 @@ const routes = [
       exact: true
    },
    {
-      path: "/patient/scheduling",
+      path: "/paciente/agendamento",
       component: SchedulingForm,
       name: SchedulingForm,
       exact: true,
    },
    {
-      path: "/patient/schedulings",
+      path: "/paciente/agendamentos",
       component: SchedulingList,
       name: SchedulingList,
       exact: true,
