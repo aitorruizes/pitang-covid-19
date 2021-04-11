@@ -1,0 +1,12 @@
+
+.table-row {
+    text-align: center;
+}
+
+.table-button {
+    border: none;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    color: white;
+    padding: 3px 8px;
+}

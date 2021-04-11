@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import SchedulingForm from "./pages/Scheduling/SchedulingForm";
 import SchedulingList from "./pages/Scheduling/SchedulingList";
+import SchedulingInformation from "./pages/Scheduling/SchedulingInformation";
 
 const routes = [
    {
@@ -23,6 +24,12 @@ const routes = [
       path: "/paciente/agendamentos",
       component: SchedulingList,
       name: SchedulingList,
+      exact: true,
+   },
+   {
+      path: "/paciente/status",
+      component: SchedulingInformation,
+      name: SchedulingInformation,
       exact: true,
    }
 ];

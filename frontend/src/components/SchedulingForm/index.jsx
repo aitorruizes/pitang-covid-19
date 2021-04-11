@@ -21,7 +21,7 @@ const options = [
    { key: "12:30", value: "12:30", numberOfSchedulings: 0 },
 ];
 
-const initialValues = {
+let initialValues = {
    name: "",
    birthdate: "",
    schedulingDate: null,
@@ -41,7 +41,7 @@ const SaveFormData = () => {
    useEffect(() => {
       const data = localStorage.getItem("scheduling-data");
 
-      if(data) {
+      if (data) {
          setValues(JSON.parse(data));
       }
    }, []);
@@ -65,7 +65,7 @@ const SchedulingForm = () => {
 
       hourOptions.forEach((hour) => {
          if (hour.value === selectedHour) {
-            setHourOptions(hour.numberOfSchedulings += 1);
+            setHourOptions((hour.numberOfSchedulings += 1));
          }
       });
    };
@@ -114,13 +114,13 @@ const SchedulingForm = () => {
             <div className="form-input-select">
                <label>Horário:</label>
                <br />
-               <Select name="schedulingHour" options={options}/>
+               <Select name="schedulingHour" options={hourOptions} />
             </div>
             <br />
             <div className="form-input">
                <input type="submit" value="Agendar" />
             </div>
-            <SaveFormData/>
+            <SaveFormData />
          </Form>
       </Formik>
    );

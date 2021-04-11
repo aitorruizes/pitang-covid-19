@@ -22,7 +22,7 @@ const ListView = ({ title, columns }) => {
          scheduling.schedulingDate = date;
       });
    };
-
+   
    const fetchData = async () => {
       setLoading(true);
 

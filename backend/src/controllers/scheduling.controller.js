@@ -10,7 +10,6 @@ class SchedulingController {
       const findPatient = await SchedulingModel.find();
 
       findPatient.forEach(async (patient) => {
-         console.log(patient);
          let searchedBirthdate = patient.birthdate.split("/");
          let searchedYear = searchedBirthdate[2];
 
