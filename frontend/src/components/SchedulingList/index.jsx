@@ -18,6 +18,10 @@ const SchedulingList = () => {
       {
          id: "schedulingHour",
          value: "Horário",
+      },
+      {
+         id: "status",
+         value: "Status",
       }
    ];
 

@@ -1,0 +1,8 @@
+
+.card {
+    width: 900px !important;
+}
+
+.card-body {
+    background-image: none !important;
+}

@@ -1,17 +1,12 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import Card from "../Card";
+import "../../styles/home-card.css";
 
-const Home = ({ cardTitle, footerTitle }) => {
+const Home = ({ cardTitle }) => {
    return (
-      <Container className="mt-5">
-         <Card title={cardTitle}>
-            <blockquote className="blockquote mb-0">
-               <p>
-                  Projeto desenvolvido por mim para o desafio final do processo seletivo da Pitang.
-               </p>
-            </blockquote>
-         </Card>
+      <Container className="container">
+         <Card title={cardTitle}></Card>
       </Container>
    );
 };

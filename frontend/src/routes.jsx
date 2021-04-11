@@ -8,7 +8,7 @@ import SchedulingList from "./pages/Scheduling/SchedulingList";
 
 const routes = [
    {
-      path: "/home",
+      path: "/inicio",
       component: Home,
       name: Home,
       exact: true

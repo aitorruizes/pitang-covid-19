@@ -1,12 +1,11 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import "../../styles/card.css";
 
 const CardComponent = ({ title, children }) => (
-   <Card>
-      <Card.Header>
-         <Card.Title className="mt-2">{title}</Card.Title>
-      </Card.Header>
-      <Card.Body>{children}</Card.Body>
+   <Card className="card">
+      <Card.Header className="card-header">{title}</Card.Header>
+      <Card.Body className="card-body">{children}</Card.Body>
    </Card>
 );
 

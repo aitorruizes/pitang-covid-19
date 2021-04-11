@@ -3,6 +3,7 @@ import { Container, Spinner } from "react-bootstrap";
 import Card from "../Card";
 import Table from "../Table";
 import axios from "../../utils/api";
+import "../../styles/card.css";
 
 const ListView = ({ title, columns }) => {
    const [rows, setRows] = useState([]);
