@@ -8,8 +8,8 @@ const TableComponent = ({ columns = [], rows = [] }) => {
    let history = useHistory();
 
    function onRowClick(index) {
-      console.log(rows[index]);
-      history.push("/paciente/status", { response: rows[index] })
+      let response = rows[index];
+      history.push({ pathname: "/paciente/status", state: { response }});
    }
 
    return (

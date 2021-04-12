@@ -1,0 +1,19 @@
+
+.patient-status-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.patient-input label {
+    width: 220px;
+}
+
+.patient-input input {
+    width: 220px;
+    text-align: justify;
+}
+
+.patient-label {
+    margin-right: 271px;
+}
