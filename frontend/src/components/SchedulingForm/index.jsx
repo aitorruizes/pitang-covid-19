@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import DatePicker from "../DatePicker";
@@ -35,23 +35,6 @@ const validationSchema = Yup.object({
    schedulingHour: Yup.string().required("Este campo é obrigatório"),
 });
 
-const SaveFormData = () => {
-   const { values, setValues } = useFormikContext();
-
-   useEffect(() => {
-      const data = localStorage.getItem("scheduling-data");
-
-      if (data) {
-         setValues(JSON.parse(data));
-      }
-   }, []);
-
-   useEffect(() => {
-      localStorage.setItem("scheduling-data", JSON.stringify(values));
-   });
-
-   return null;
-};
 
 const SchedulingForm = () => {
    const [hourOptions, setHourOptions] = useState(options);
@@ -120,7 +103,6 @@ const SchedulingForm = () => {
             <div className="form-input">
                <input type="submit" value="Agendar" />
             </div>
-            <SaveFormData />
          </Form>
       </Formik>
    );

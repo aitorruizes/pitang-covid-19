@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Card from "../Card";
@@ -34,7 +34,7 @@ const SchedulingInformation = ({ cardTitle }) => {
    };
 
    const onSubmit = async (event) => {
-      event.preventDefault()
+      event.preventDefault();
 
       const data = {
          hasVaccinated: isVaccinated.data,
@@ -45,6 +45,22 @@ const SchedulingInformation = ({ cardTitle }) => {
 
       await axios.post("/patient/status/create", data);
    };
+
+   const schedulingId = response.response._id;
+   let data;
+   let hasConfirmedScheduling;
+
+   useEffect(() => {
+      async function fetchData() {
+         data = await axios.get(`/patient/status/get/${schedulingId}`);
+         hasConfirmedScheduling =
+            data.data.findedSchedulingInformation.hasConfirmedScheduling;
+      }
+
+      fetchData();
+   }, []);
+
+   console.log(data, hasConfirmedScheduling)
 
    return (
       <Container className="container">

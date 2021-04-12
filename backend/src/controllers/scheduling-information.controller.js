@@ -1,21 +1,28 @@
 const SchedulingInformationModel = require("../models/scheduling-information.model");
+const schedulingInformationRouter = require("../routes/scheduling-information.routes");
 
 class SchedulingInformationController {
-    async create(req, res) {
-        const data = req.body;
-        
-        const newSchedulingInformation = await SchedulingInformationModel.create(data);
+   async create(req, res) {
+      const data = req.body;
 
-        res.send({ schedulingInformation: newSchedulingInformation});
-    }
+      const newSchedulingInformation = await SchedulingInformationModel.create(
+         data
+      );
 
-    async get(req, res) {
-        const schedulingId = req.params.id;
+      res.send({ schedulingInformation: newSchedulingInformation });
+   }
 
-        const findedSchedulingInformation = await SchedulingInformationModel.findById(schedulingId);
+   async get(req, res) {
+      const id = req.params.id;
 
-        console.log(findedSchedulingInformation)
-    }
+      const findedSchedulingInformation = await SchedulingInformationModel.findOne(
+         { schedulingId: id }
+      ).exec();
+      
+      console.log(findedSchedulingInformation)
+
+      res.send({ findedSchedulingInformation });
+   }
 }
 
 module.exports = new SchedulingInformationController();
