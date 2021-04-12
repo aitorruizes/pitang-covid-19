@@ -5,6 +5,7 @@ const SchedulingInformationSchema = mongoose.Schema(
       isVaccinated: { type: Boolean, default: false },
       vaccine: { type: String, default: "Nenhuma" },
       schedulingId: { type: String },
+      hasConfirmedScheduling: { type: Boolean, default: false },
    },
    { timestamps: true }
 );
