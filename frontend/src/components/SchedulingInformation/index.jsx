@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Card from "../Card";
@@ -47,71 +47,123 @@ const SchedulingInformation = ({ cardTitle }) => {
    };
 
    const schedulingId = response.response._id;
-   let data;
-   let hasConfirmedScheduling;
+   const data = useRef(null);
+   let hasConfirmedScheduling = useRef(null);
+   let hasVaccinated = useRef(null);
+   let vaccine = useRef(null);
+
+   const fetchData = async () => {
+      data.current = await axios.get(`/patient/status/get/${schedulingId}`);
+   };
 
    useEffect(() => {
-      async function fetchData() {
-         data = await axios.get(`/patient/status/get/${schedulingId}`);
-         hasConfirmedScheduling =
-            data.data.findedSchedulingInformation.hasConfirmedScheduling;
-      }
-
       fetchData();
    }, []);
-
-   console.log(data, hasConfirmedScheduling)
 
    return (
       <Container className="container">
          <Card title={cardTitle}>
-            <form onSubmit={onSubmit} className="patient-status-container">
-               <div className="patient-input">
-                  <label>Nome:</label>
-                  <input disabled value={response.response.name} />
-               </div>
-               <div className="patient-input">
-                  <label>Data de Nascimento:</label>
-                  <input disabled value={response.response.birthdate} />
-               </div>
-               <div className="patient-input">
-                  <label>Data do Agendamento:</label>
-                  <input disabled value={response.response.schedulingDate} />
-               </div>
-               <div className="patient-input">
-                  <label>Horário do Agendamento:</label>
-                  <input disabled value={response.response.schedulingHour} />
-               </div>
-               <div className="patient-input-radio">
-                  <label className="patient-label">Vacinado:</label>
-                  <label>Sim</label>
-                  <input
-                     onChange={getIsVacinnated}
-                     type="radio"
-                     name="isVaccinated"
-                     value="Sim"
-                  />
-                  <label>Não</label>
-                  <input
-                     onChange={getIsVacinnated}
-                     type="radio"
-                     name="isVaccinated"
-                     value="Não"
-                  />
-               </div>
-               <div className="patient-input">
-                  <label>Tipo da Vacina:</label>
-                  <select onChange={getSelectedVaccine}>
-                     <option disabled>Escolha uma vacina</option>
-                     {options.map((option, index) => (
-                        <option key={index}>{option.value}</option>
-                     ))}
-                  </select>
-               </div>
-               <div className="patient-input">
-                  <input type="submit" value="Alterar agendamento" />
-               </div>
-            </form>
+            {hasConfirmedScheduling == null ? (
+               <form onSubmit={onSubmit} className="patient-status-container">
+                  <div className="patient-input">
+                     <label>Nome:</label>
+                     <input disabled value={response.response.name} />
+                  </div>
+                  <div className="patient-input">
+                     <label>Data de Nascimento:</label>
+                     <input disabled value={response.response.birthdate} />
+                  </div>
+                  <div className="patient-input">
+                     <label>Data do Agendamento:</label>
+                     <input disabled value={response.response.schedulingDate} />
+                  </div>
+                  <div className="patient-input">
+                     <label>Horário do Agendamento:</label>
+                     <input disabled value={response.response.schedulingHour} />
+                  </div>
+                  <div className="patient-input-radio">
+                     <label className="patient-label">Vacinado:</label>
+                     <label>Sim</label>
+                     <input
+                        onChange={getIsVacinnated}
+                        type="radio"
+                        name="isVaccinated"
+                        value="Sim"
+                     />
+                     <label>Não</label>
+                     <input
+                        onChange={getIsVacinnated}
+                        type="radio"
+                        name="isVaccinated"
+                        value="Não"
+                     />
+                  </div>
+                  <div className="patient-input">
+                     <label>Tipo da Vacina:</label>
+                     <select defaultValue=""  onChange={getSelectedVaccine}>
+                        <option value="" hidden>
+                           Escolha uma vacina
+                        </option>
+                        {options.map((option, index) => (
+                           <option key={index}>{option.value}</option>
+                        ))}
+                     </select>
+                  </div>
+                  <div className="patient-input">
+                     <input type="submit" value="Alterar agendamento" />
+                  </div>
+               </form>
+            ) : (
+               <form onSubmit={onSubmit} className="patient-status-container">
+                  <div className="patient-input">
+                     <label>Nome:</label>
+                     <input disabled value={response.response.name} />
+                  </div>
+                  <div className="patient-input">
+                     <label>Data de Nascimento:</label>
+                     <input disabled value={response.response.birthdate} />
+                  </div>
+                  <div className="patient-input">
+                     <label>Data do Agendamento:</label>
+                     <input disabled value={response.response.schedulingDate} />
+                  </div>
+                  <div className="patient-input">
+                     <label>Horário do Agendamento:</label>
+                     <input disabled value={response.response.schedulingHour} />
+                  </div>
+                  <div className="patient-input-radio">
+                     <label className="patient-label">Vacinado:</label>
+                     <label>Sim</label>
+                     <input
+                        onChange={getIsVacinnated}
+                        type="radio"
+                        name="isVaccinated"
+                        value="Sim"
+                     />
+                     <label>Não</label>
+                     <input
+                        onChange={getIsVacinnated}
+                        type="radio"
+                        name="isVaccinated"
+                        value="Não"
+                     />
+                  </div>
+                  <div className="patient-input">
+                     <label>Tipo da Vacina:</label>
+                     <select defaultValue="" onChange={getSelectedVaccine}>
+                        <option value="" hidden>
+                           Escolha uma vacina
+                        </option>
+                        {options.map((option, index) => (
+                           <option key={index}>{option.value}</option>
+                        ))}
+                     </select>
+                  </div>
+                  <div className="patient-input">
+                     <input type="submit" value="Alterar agendamento" />
+                  </div>
+               </form>
+            )}
          </Card>
       </Container>
    );
