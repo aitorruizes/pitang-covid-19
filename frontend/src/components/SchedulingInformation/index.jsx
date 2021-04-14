@@ -54,6 +54,15 @@ const SchedulingInformation = ({ cardTitle }) => {
 
    const fetchData = async () => {
       data.current = await axios.get(`/patient/status/get/${schedulingId}`);
+
+      if (data) {
+         hasConfirmedScheduling =
+            data.current.data.findedSchedulingInformation
+               .hasConfirmedScheduling;
+         hasVaccinated =
+            data.current.data.findedSchedulingInformation.isVaccinated;
+         vaccine = data.current.data.findedSchedulingInformation.vaccine;
+      }
    };
 
    useEffect(() => {
@@ -100,7 +109,7 @@ const SchedulingInformation = ({ cardTitle }) => {
                   </div>
                   <div className="patient-input">
                      <label>Tipo da Vacina:</label>
-                     <select defaultValue=""  onChange={getSelectedVaccine}>
+                     <select defaultValue="" onChange={getSelectedVaccine}>
                         <option value="" hidden>
                            Escolha uma vacina
                         </option>
