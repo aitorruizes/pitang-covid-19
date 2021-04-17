@@ -1,8 +1,46 @@
 
-.card {
-    width: 900px !important;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
 }
 
-.card-body {
-    background-image: none !important;
+.card {
+    width: 900px;
+}
+
+.card-header {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.home-logo {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.home-button {
+    width: 100%;
+    padding: 6px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.home-button:hover {
+    background-color: black;
+    transition: ease-out .5s;
+}
+
+.blockquote p {
+    margin: 25px 0;
+    background-color: #F5F5F5;
+    border-left: 5px solid lightseagreen;
+    padding: 10px;
 }

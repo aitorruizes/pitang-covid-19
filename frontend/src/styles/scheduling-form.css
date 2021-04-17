@@ -10,8 +10,8 @@
 .form-input input {
     width: 250px;
     padding: 5px 20px;
-    border: none;
-    border-bottom: 2px solid black;
+    border: 1px solid black;
+    border-radius: 2px;
     outline: none;
 }
 

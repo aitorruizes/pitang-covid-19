@@ -44,7 +44,7 @@ const SchedulingInformation = ({ cardTitle }) => {
          schedulingId: response.response._id,
          hasConfirmedScheduling: true,
       };
-      
+
       await axios.post("/patient/status/create", data);
 
       history.push("/paciente/agendamentos");
@@ -156,7 +156,9 @@ const SchedulingInformation = ({ cardTitle }) => {
                      <input type="submit" value="Encerrar agendamento" />
                   </div>
                ) : (
-                  <span>Este agendamento foi encerrado pelo enfermeiro responsável.</span>
+                  <span>
+                     Este agendamento foi encerrado pelo enfermeiro responsável.
+                  </span>
                )}
             </form>
          </Card>
