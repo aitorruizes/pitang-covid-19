@@ -20,7 +20,7 @@ const Home = ({ cardTitle }) => {
                <p>
                   A vacinação em Recife já está disponível para todas as faixas
                   etárias através deste portal. Pacientes <b>idosos</b> terão
-                  prioridade diante outras faixas etárias.
+                  prioridade diante de outras faixas etárias.
                </p>
             </blockquote>
             <input

@@ -1,0 +1,58 @@
+
+.patient-status-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.patient-input label {
+    width: 220px;
+}
+
+.patient-input input {
+    width: 220px;
+    text-align: justify;
+}
+
+.patient-input-radio div {
+    display: inline-block;
+}
+
+.patient-input-select div label {
+    margin-right: 97px;
+}
+
+.patient-input-select div select {
+    width: 220px;
+}
+
+.patient-input input[type="submit"] {
+    margin-top: 20px;
+    width: 438px;
+    text-align: center;
+    font-size: 17px;
+    padding: 4px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    color: white;
+}
+
+.patient-input input[type="submit"]:hover {
+    background-color: black;
+    transition: ease-out .5s;
+}
+
+
+.patient-label {
+    margin-right: 271px;
+}
+
+.nurse-message-container {
+    width: 440px;
+    margin-top: 12px;
+    background-color: #F5F5F5;
+    border-left: 5px solid lightseagreen;
+    padding: 10px 20px;
+    text-align: center;
+}

@@ -3,7 +3,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Card from "../Card";
 import axios from "../../utils/api";
-import "../../styles/patient-status.css";
+import "../../styles/scheduling-information.css";
 
 const options = [
    { key: "vacina", value: "AstraZeneca" },
@@ -85,7 +85,7 @@ const SchedulingInformation = ({ cardTitle }) => {
                </div>
                <div className="patient-input-radio">
                   <label className="patient-label">Vacinado:</label>
-                  {data != null && data.isVaccinated == true ? (
+                  {data != null && data.isVaccinated === true ? (
                      <div>
                         <label>Sim</label>
                         <input
@@ -125,30 +125,35 @@ const SchedulingInformation = ({ cardTitle }) => {
                      </div>
                   )}
                </div>
-               <div className="patient-input">
-                  <label>Tipo da Vacina:</label>
+               <div className="patient-input-select">
                   {data != null && data.vaccine !== "" ? (
-                     <select
-                        disabled
-                        defaultValue=""
-                        onChange={getSelectedVaccine}
-                     >
-                        <option value="" hidden>
-                           {data.vaccine}
-                        </option>
-                        {options.map((option, index) => (
-                           <option key={index}>{option.value}</option>
-                        ))}
-                     </select>
+                     <div>
+                        <label>Tipo da Vacina:</label>
+                        <select
+                           disabled
+                           defaultValue=""
+                           onChange={getSelectedVaccine}
+                        >
+                           <option value="" hidden>
+                              {data.vaccine}
+                           </option>
+                           {options.map((option, index) => (
+                              <option key={index}>{option.value}</option>
+                           ))}
+                        </select>
+                     </div>
                   ) : (
-                     <select defaultValue="" onChange={getSelectedVaccine}>
-                        <option value="" hidden>
-                           Escolha uma vacina
-                        </option>
-                        {options.map((option, index) => (
-                           <option key={index}>{option.value}</option>
-                        ))}
-                     </select>
+                     <div>
+                        <label>Tipo da Vacina:</label>
+                        <select defaultValue="" onChange={getSelectedVaccine}>
+                           <option value="" hidden>
+                              Escolha uma vacina
+                           </option>
+                           {options.map((option, index) => (
+                              <option key={index}>{option.value}</option>
+                           ))}
+                        </select>
+                     </div>
                   )}
                </div>
                {data == null ? (
@@ -156,9 +161,11 @@ const SchedulingInformation = ({ cardTitle }) => {
                      <input type="submit" value="Encerrar agendamento" />
                   </div>
                ) : (
-                  <span>
-                     Este agendamento foi encerrado pelo enfermeiro responsável.
-                  </span>
+                  <div className="nurse-message-container">
+                     <span className="nurse-message">
+                        Este agendamento foi encerrado
+                     </span>
+                  </div>
                )}
             </form>
          </Card>

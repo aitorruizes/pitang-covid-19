@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import DatePicker from "../DatePicker";
@@ -35,7 +35,6 @@ const validationSchema = Yup.object({
    schedulingHour: Yup.string().required("Este campo é obrigatório"),
 });
 
-
 const SchedulingForm = () => {
    const [hourOptions, setHourOptions] = useState(options);
    let history = useHistory();
@@ -43,9 +42,9 @@ const SchedulingForm = () => {
    const onSubmit = async (values) => {
       await axios.post("/patient/scheduling/create", values);
       history.push("/paciente/agendamentos");
-
+      
       const selectedHour = values.schedulingHour;
-
+      
       hourOptions.forEach((hour) => {
          if (hour.value === selectedHour) {
             setHourOptions((hour.numberOfSchedulings += 1));
