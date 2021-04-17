@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Card from "../Card";
 import axios from "../../utils/api";
@@ -16,6 +16,8 @@ const SchedulingInformation = ({ cardTitle }) => {
    const response = location.state;
    const [isVaccinated, setIsVaccinated] = useState(false);
    const [vaccineType, setVaccineType] = useState("");
+   const [data, setData] = useState(null);
+   let history = useHistory();
 
    const getIsVacinnated = (event) => {
       if (event.target.value === "Sim") {
@@ -37,32 +39,24 @@ const SchedulingInformation = ({ cardTitle }) => {
       event.preventDefault();
 
       const data = {
-         hasVaccinated: isVaccinated.data,
+         isVaccinated: isVaccinated.data,
          vaccine: vaccineType.data,
          schedulingId: response.response._id,
          hasConfirmedScheduling: true,
       };
-
+      
       await axios.post("/patient/status/create", data);
+
+      history.push("/paciente/agendamentos");
    };
 
    const schedulingId = response.response._id;
-   const data = useRef(null);
-   let hasConfirmedScheduling = useRef(null);
-   let hasVaccinated = useRef(null);
-   let vaccine = useRef(null);
 
    const fetchData = async () => {
-      data.current = await axios.get(`/patient/status/get/${schedulingId}`);
-
-      if (data) {
-         hasConfirmedScheduling =
-            data.current.data.findedSchedulingInformation
-               .hasConfirmedScheduling;
-         hasVaccinated =
-            data.current.data.findedSchedulingInformation.isVaccinated;
-         vaccine = data.current.data.findedSchedulingInformation.vaccine;
-      }
+      const receivedData = await axios.get(
+         `/patient/status/get/${schedulingId}`
+      );
+      setData(receivedData.data.findedSchedulingInformation);
    };
 
    useEffect(() => {
@@ -72,43 +66,81 @@ const SchedulingInformation = ({ cardTitle }) => {
    return (
       <Container className="container">
          <Card title={cardTitle}>
-            {hasConfirmedScheduling == null ? (
-               <form onSubmit={onSubmit} className="patient-status-container">
-                  <div className="patient-input">
-                     <label>Nome:</label>
-                     <input disabled value={response.response.name} />
-                  </div>
-                  <div className="patient-input">
-                     <label>Data de Nascimento:</label>
-                     <input disabled value={response.response.birthdate} />
-                  </div>
-                  <div className="patient-input">
-                     <label>Data do Agendamento:</label>
-                     <input disabled value={response.response.schedulingDate} />
-                  </div>
-                  <div className="patient-input">
-                     <label>Horário do Agendamento:</label>
-                     <input disabled value={response.response.schedulingHour} />
-                  </div>
-                  <div className="patient-input-radio">
-                     <label className="patient-label">Vacinado:</label>
-                     <label>Sim</label>
-                     <input
-                        onChange={getIsVacinnated}
-                        type="radio"
-                        name="isVaccinated"
-                        value="Sim"
-                     />
-                     <label>Não</label>
-                     <input
-                        onChange={getIsVacinnated}
-                        type="radio"
-                        name="isVaccinated"
-                        value="Não"
-                     />
-                  </div>
-                  <div className="patient-input">
-                     <label>Tipo da Vacina:</label>
+            <form onSubmit={onSubmit} className="patient-status-container">
+               <div className="patient-input">
+                  <label>Nome:</label>
+                  <input disabled value={response.response.name} />
+               </div>
+               <div className="patient-input">
+                  <label>Data de Nascimento:</label>
+                  <input disabled value={response.response.birthdate} />
+               </div>
+               <div className="patient-input">
+                  <label>Data do Agendamento:</label>
+                  <input disabled value={response.response.schedulingDate} />
+               </div>
+               <div className="patient-input">
+                  <label>Horário do Agendamento:</label>
+                  <input disabled value={response.response.schedulingHour} />
+               </div>
+               <div className="patient-input-radio">
+                  <label className="patient-label">Vacinado:</label>
+                  {data != null && data.isVaccinated == true ? (
+                     <div>
+                        <label>Sim</label>
+                        <input
+                           onChange={getIsVacinnated}
+                           type="radio"
+                           name="isVaccinated"
+                           value="Sim"
+                           checked={true}
+                           disabled={true}
+                        />
+                        <label>Não</label>
+                        <input
+                           onChange={getIsVacinnated}
+                           type="radio"
+                           name="isVaccinated"
+                           value="Não"
+                           disabled={true}
+                        />
+                     </div>
+                  ) : (
+                     <div>
+                        <label>Sim</label>
+                        <input
+                           onChange={getIsVacinnated}
+                           type="radio"
+                           name="isVaccinated"
+                           value="Sim"
+                        />
+                        <label>Não</label>
+                        <input
+                           onChange={getIsVacinnated}
+                           type="radio"
+                           name="isVaccinated"
+                           value="Não"
+                           checked={true}
+                        />
+                     </div>
+                  )}
+               </div>
+               <div className="patient-input">
+                  <label>Tipo da Vacina:</label>
+                  {data != null && data.vaccine !== "" ? (
+                     <select
+                        disabled
+                        defaultValue=""
+                        onChange={getSelectedVaccine}
+                     >
+                        <option value="" hidden>
+                           {data.vaccine}
+                        </option>
+                        {options.map((option, index) => (
+                           <option key={index}>{option.value}</option>
+                        ))}
+                     </select>
+                  ) : (
                      <select defaultValue="" onChange={getSelectedVaccine}>
                         <option value="" hidden>
                            Escolha uma vacina
@@ -117,62 +149,16 @@ const SchedulingInformation = ({ cardTitle }) => {
                            <option key={index}>{option.value}</option>
                         ))}
                      </select>
-                  </div>
+                  )}
+               </div>
+               {data == null ? (
                   <div className="patient-input">
-                     <input type="submit" value="Alterar agendamento" />
+                     <input type="submit" value="Encerrar agendamento" />
                   </div>
-               </form>
-            ) : (
-               <form onSubmit={onSubmit} className="patient-status-container">
-                  <div className="patient-input">
-                     <label>Nome:</label>
-                     <input disabled value={response.response.name} />
-                  </div>
-                  <div className="patient-input">
-                     <label>Data de Nascimento:</label>
-                     <input disabled value={response.response.birthdate} />
-                  </div>
-                  <div className="patient-input">
-                     <label>Data do Agendamento:</label>
-                     <input disabled value={response.response.schedulingDate} />
-                  </div>
-                  <div className="patient-input">
-                     <label>Horário do Agendamento:</label>
-                     <input disabled value={response.response.schedulingHour} />
-                  </div>
-                  <div className="patient-input-radio">
-                     <label className="patient-label">Vacinado:</label>
-                     <label>Sim</label>
-                     <input
-                        onChange={getIsVacinnated}
-                        type="radio"
-                        name="isVaccinated"
-                        value="Sim"
-                     />
-                     <label>Não</label>
-                     <input
-                        onChange={getIsVacinnated}
-                        type="radio"
-                        name="isVaccinated"
-                        value="Não"
-                     />
-                  </div>
-                  <div className="patient-input">
-                     <label>Tipo da Vacina:</label>
-                     <select defaultValue="" onChange={getSelectedVaccine}>
-                        <option value="" hidden>
-                           Escolha uma vacina
-                        </option>
-                        {options.map((option, index) => (
-                           <option key={index}>{option.value}</option>
-                        ))}
-                     </select>
-                  </div>
-                  <div className="patient-input">
-                     <input type="submit" value="Alterar agendamento" />
-                  </div>
-               </form>
-            )}
+               ) : (
+                  <span>Este agendamento foi encerrado pelo enfermeiro responsável.</span>
+               )}
+            </form>
          </Card>
       </Container>
    );
