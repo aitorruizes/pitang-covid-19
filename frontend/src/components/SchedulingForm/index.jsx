@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import DatePicker from "../DatePicker";
@@ -42,9 +42,9 @@ const SchedulingForm = () => {
    const onSubmit = async (values) => {
       await axios.post("/patient/scheduling/create", values);
       history.push("/paciente/agendamentos");
-      
+
       const selectedHour = values.schedulingHour;
-      
+
       hourOptions.forEach((hour) => {
          if (hour.value === selectedHour) {
             setHourOptions((hour.numberOfSchedulings += 1));
@@ -62,7 +62,7 @@ const SchedulingForm = () => {
             <div className="form-input">
                <label>Nome:</label>
                <br />
-               <Field type="text" name="name" placeholder="Informe seu nome" />
+               <Field data-testid="form-name-field" type="text" name="name" placeholder="Informe seu nome" />
                <br />
                <ErrorMessage
                   className="form-input-error"
@@ -75,6 +75,7 @@ const SchedulingForm = () => {
                <label>Data de Nascimento:</label>
                <br />
                <Field
+                  data-testid="form-birthdate-field"
                   type="text"
                   name="birthdate"
                   placeholder="Informe data de nascimento"
@@ -90,17 +91,17 @@ const SchedulingForm = () => {
             <div className="form-input">
                <label>Agendar vacina para:</label>
                <br />
-               <DatePicker name="schedulingDate" />
+               <DatePicker data-testid="form-schedulingDate-field" name="schedulingDate" />
             </div>
             <br />
             <div className="form-input-select">
                <label>Horário:</label>
                <br />
-               <Select name="schedulingHour" options={hourOptions} />
+               <Select data-testid="form-schedulingHour-field" name="schedulingHour" options={hourOptions} />
             </div>
             <br />
             <div className="form-input">
-               <input type="submit" value="Agendar" />
+               <input data-testid="form-btn" type="submit" value="Agendar" />
             </div>
          </Form>
       </Formik>

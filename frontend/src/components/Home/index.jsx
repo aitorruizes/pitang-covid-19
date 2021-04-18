@@ -15,7 +15,7 @@ const Home = ({ cardTitle }) => {
    return (
       <Container className="container">
          <Card title={cardTitle}>
-            <img className="home-logo" src={VaccineImage} />
+            <img className="home-logo" src={VaccineImage} alt="home-logo" />
             <blockquote className="blockquote">
                <p>
                   A vacinação em Recife já está disponível para todas as faixas

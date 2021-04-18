@@ -23,20 +23,20 @@ const ListView = ({ title, columns }) => {
       });
    };
    
-   const fetchData = async () => {
-      setLoading(true);
-
-      try {
-         const response = await axios.get("/patient/scheduling/getAll");
-         formattedDate(response);
-         setRows(response.data.schedulings);
-         setLoading(false);
-      } catch (error) {
-         console.log(error.message);
-      }
-   };
-
    useEffect(() => {
+      const fetchData = async () => {
+         setLoading(true);
+   
+         try {
+            const response = await axios.get("/patient/scheduling/getAll");
+            formattedDate(response);
+            setRows(response.data.schedulings);
+            setLoading(false);
+         } catch (error) {
+            console.log(error.message);
+         }
+      };
+
       fetchData();
    }, []);
 

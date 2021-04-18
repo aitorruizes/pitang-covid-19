@@ -49,19 +49,23 @@ const SchedulingInformation = ({ cardTitle }) => {
 
       history.push("/paciente/agendamentos");
    };
-
+   
    const schedulingId = response.response._id;
 
-   const fetchData = async () => {
-      const receivedData = await axios.get(
-         `/patient/status/get/${schedulingId}`
-      );
-      setData(receivedData.data.findedSchedulingInformation);
-   };
-
    useEffect(() => {
+      const fetchData = async () => {
+
+         const receivedData = await axios.get(
+            `/patient/status/get/${schedulingId}`
+         );
+
+         setData(receivedData.data.findedSchedulingInformation);
+      };
+
       fetchData();
    }, []);
+
+   console.log(isVaccinated);
 
    return (
       <Container className="container">

@@ -18,8 +18,6 @@ class SchedulingInformationController {
       const findedSchedulingInformation = await SchedulingInformationModel.findOne(
          { schedulingId: id }
       ).exec();
-      
-      console.log(findedSchedulingInformation)
 
       res.send({ findedSchedulingInformation });
    }
