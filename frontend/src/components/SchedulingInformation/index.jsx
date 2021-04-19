@@ -38,23 +38,36 @@ const SchedulingInformation = ({ cardTitle }) => {
    const onSubmit = async (event) => {
       event.preventDefault();
 
-      const data = {
-         isVaccinated: isVaccinated.data,
-         vaccine: vaccineType.data,
-         schedulingId: response.response._id,
-         hasConfirmedScheduling: true,
-      };
+      const isValidated = formValidation();
 
-      await axios.post("/patient/status/create", data);
+      if (isValidated) {
+         alert("Campos devem ser preenchidos.");
+      } else {
+         const data = {
+            isVaccinated: isVaccinated.data,
+            vaccine: vaccineType.data,
+            schedulingId: response.response._id,
+            hasConfirmedScheduling: true,
+         };
 
-      history.push("/paciente/agendamentos");
+         await axios.post("/patient/status/create", data);
+
+         history.push("/paciente/agendamentos");
+      }
    };
-   
+
+   const formValidation = () => {
+      if (isVaccinated === false || vaccineType === null) {
+         return true;
+      }
+
+      return false;
+   };
+
    const schedulingId = response.response._id;
 
    useEffect(() => {
       const fetchData = async () => {
-
          const receivedData = await axios.get(
             `/patient/status/get/${schedulingId}`
          );
@@ -64,8 +77,6 @@ const SchedulingInformation = ({ cardTitle }) => {
 
       fetchData();
    }, []);
-
-   console.log(isVaccinated);
 
    return (
       <Container className="container">
@@ -124,7 +135,6 @@ const SchedulingInformation = ({ cardTitle }) => {
                            type="radio"
                            name="isVaccinated"
                            value="Não"
-                           checked={true}
                         />
                      </div>
                   )}

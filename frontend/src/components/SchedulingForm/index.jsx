@@ -51,7 +51,7 @@ const SchedulingForm = () => {
          }
       });
    };
-
+   
    return (
       <Formik
          initialValues={initialValues}
@@ -62,7 +62,12 @@ const SchedulingForm = () => {
             <div className="form-input">
                <label>Nome:</label>
                <br />
-               <Field data-testid="form-name-field" type="text" name="name" placeholder="Informe seu nome" />
+               <Field
+                  data-testid="form-name-field"
+                  type="text"
+                  name="name"
+                  placeholder="Informe seu nome"
+               />
                <br />
                <ErrorMessage
                   className="form-input-error"
@@ -91,13 +96,20 @@ const SchedulingForm = () => {
             <div className="form-input">
                <label>Agendar vacina para:</label>
                <br />
-               <DatePicker data-testid="form-schedulingDate-field" name="schedulingDate" />
+               <DatePicker
+                  data-testid="form-schedulingDate-field"
+                  name="schedulingDate"
+               />
             </div>
             <br />
             <div className="form-input-select">
                <label>Horário:</label>
                <br />
-               <Select data-testid="form-schedulingHour-field" name="schedulingHour" options={hourOptions} />
+               <Select
+                  data-testid="form-schedulingHour-field"
+                  name="schedulingHour"
+                  options={hourOptions}
+               />
             </div>
             <br />
             <div className="form-input">
