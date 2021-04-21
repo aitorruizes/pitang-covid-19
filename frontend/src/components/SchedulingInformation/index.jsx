@@ -35,6 +35,14 @@ const SchedulingInformation = ({ cardTitle }) => {
       console.log(vaccineType);
    };
 
+   const formValidation = () => {
+      if (isVaccinated === null || vaccineType === null) {
+         return true;
+      }
+
+      return false;
+   };
+
    const onSubmit = async (event) => {
       event.preventDefault();
 
@@ -54,14 +62,6 @@ const SchedulingInformation = ({ cardTitle }) => {
 
          history.push("/paciente/agendamentos");
       }
-   };
-
-   const formValidation = () => {
-      if (isVaccinated === false || vaccineType === null) {
-         return true;
-      }
-
-      return false;
    };
 
    const schedulingId = response.response._id;
@@ -100,7 +100,7 @@ const SchedulingInformation = ({ cardTitle }) => {
                </div>
                <div className="patient-input-radio">
                   <label className="patient-label">Vacinado:</label>
-                  {data != null && data.isVaccinated === true ? (
+                  {data != null && data.isVaccinated === true && (
                      <div>
                         <label>Sim</label>
                         <input
@@ -120,7 +120,29 @@ const SchedulingInformation = ({ cardTitle }) => {
                            disabled={true}
                         />
                      </div>
-                  ) : (
+                  )}
+                  {data != null && data.isVaccinated === false && (
+                     <div>
+                        <label>Sim</label>
+                        <input
+                           onChange={getIsVacinnated}
+                           type="radio"
+                           name="isVaccinated"
+                           value="Sim"
+                           disabled={true}
+                        />
+                        <label>Não</label>
+                        <input
+                           onChange={getIsVacinnated}
+                           type="radio"
+                           name="isVaccinated"
+                           value="Não"
+                           checked={true}
+                           disabled={true}
+                        />
+                     </div>
+                  )}
+                  {data == null && (
                      <div>
                         <label>Sim</label>
                         <input

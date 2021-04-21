@@ -9,10 +9,10 @@ import "../../styles/scheduling-form.css";
 
 const options = [
    { key: "Selecione um horário", value: "" },
-   { key: "8:00", value: "8:00", numberOfSchedulings: 0 },
-   { key: "8:30", value: "8:30", numberOfSchedulings: 0 },
-   { key: "9:00", value: "9:00", numberOfSchedulings: 0 },
-   { key: "9:30", value: "9:30", numberOfSchedulings: 0 },
+   { key: "08:00", value: "08:00", numberOfSchedulings: 0 },
+   { key: "08:30", value: "08:30", numberOfSchedulings: 0 },
+   { key: "09:00", value: "09:00", numberOfSchedulings: 0 },
+   { key: "09:30", value: "09:30", numberOfSchedulings: 0 },
    { key: "10:00", value: "10:00", numberOfSchedulings: 0 },
    { key: "10:30", value: "10:30", numberOfSchedulings: 0 },
    { key: "11:00", value: "11:00", numberOfSchedulings: 0 },
