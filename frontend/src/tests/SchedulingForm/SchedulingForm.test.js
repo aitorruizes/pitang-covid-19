@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitFor, fireEvent, act } from "@testing-library/react";
+import { render, waitFor, fireEvent } from "@testing-library/react";
 import SchedulingForm from "../../components/SchedulingForm";
 
 describe("Tests for scheduling form component", () => {

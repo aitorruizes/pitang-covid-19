@@ -78,6 +78,8 @@ const SchedulingInformation = ({ cardTitle }) => {
       fetchData();
    }, []);
 
+   console.log(isVaccinated)
+
    return (
       <Container className="container">
          <Card title={cardTitle}>
@@ -162,7 +164,7 @@ const SchedulingInformation = ({ cardTitle }) => {
                   )}
                </div>
                <div className="patient-input-select">
-                  {data != null && data.vaccine !== "" ? (
+                  {data != null && data.vaccine !== "" && (
                      <div>
                         <label>Tipo da Vacina:</label>
                         <select
@@ -178,7 +180,8 @@ const SchedulingInformation = ({ cardTitle }) => {
                            ))}
                         </select>
                      </div>
-                  ) : (
+                  )}
+                  {data == null && isVaccinated.data == true && (
                      <div>
                         <label>Tipo da Vacina:</label>
                         <select defaultValue="" onChange={getSelectedVaccine}>
